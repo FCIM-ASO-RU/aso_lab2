@@ -13,7 +13,7 @@ public class Store {
         return 0; // тип данных возвращаемого значения можно изменить
     }
     
-    public synchronized void put() {
+    public synchronized void put(char c) {
         
     }
     
