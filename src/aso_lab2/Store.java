@@ -1,7 +1,8 @@
 package aso_lab2;
 
 public class Store {
-    
+    /* Эту хрень делает Валера */
+
     private static final int capacity = 0; // указываете в соответствии с вариантом
     private int quantity;
     
