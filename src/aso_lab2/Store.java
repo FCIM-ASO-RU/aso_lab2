@@ -1,21 +1,46 @@
 package aso_lab2;
 
 public class Store {
-    /* Эту хрень делает Валера */
+    /**
+     * Song that we store
+     */
+    private String song = "";
+    /**
+     * Boolean shows if is available to get song
+     */
+    private boolean available = false;
 
-    private static final int capacity = 0; // указываете в соответствии с вариантом
-    private int quantity;
-    
-    public Store() {
-        quantity = 0;
+    /**
+     * Get one product from Store
+     * @return one product from Store
+     */
+    public synchronized String get() { // тип данных возвращаемого значения можно изменить
+        while (!available) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        available = false;
+        notifyAll();
+        return song;
     }
-    
-    public synchronized int get() {
-        return 0; // тип данных возвращаемого значения можно изменить
+
+    /**
+     * Put one product to Store
+     * @param songName add song to Store
+     */
+    public synchronized void put(final String songName) {
+        while (available) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.song = songName;
+        available = true;
+        notifyAll();
     }
-    
-    public synchronized void put() {
-        
-    }
-    
 }
