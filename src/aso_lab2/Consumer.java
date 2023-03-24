@@ -1,17 +1,18 @@
 package aso_lab2;
 
-public class Consumer extends Thread {
-    /* Эту хрень делает Ваня */
+public class Consumer extends Thread{
     private final Store store;
-    
-    public Consumer(final Store store, final String name) {
-        this.store = store;
-        setName(name);
+    private final int number;
+    public Consumer(final Store c, final int number) {
+        store = c;
+        this.number = number;
     }
-    
-    @Override
     public void run() {
-        throw new UnsupportedOperationException();
+        String value = " ";
+        for (int i = 0; i < 3; i++) {
+            value = store.get();
+            System.out.println("Consumer #" + this.number + " got: " + value);
+        }
     }
-    
+
 }
