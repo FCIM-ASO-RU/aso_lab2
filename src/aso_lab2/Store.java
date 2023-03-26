@@ -1,20 +1,26 @@
 package aso_lab2;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
 public class Store {
-    
-    private static final int capacity = 0; // указываете в соответствии с вариантом
-    private int quantity;
-    
-    public Store() {
-        quantity = 0;
+    static final int quantity = 47;
+    ArrayBlockingQueue<String> queue;
+
+    public Store(int quantity) {
+        this.queue = new ArrayBlockingQueue<>(quantity);
     }
-    
-    public synchronized int get() {
-        return 0; // тип данных возвращаемого значения можно изменить
+
+    public void put(int oddNumber) {
+        queue.add(Integer.toString(oddNumber));
     }
-    
-    public synchronized void put() {
-        
+
+    public String get() throws InterruptedException {
+        String element = null;
+        while (element == null) {
+            element = queue.poll(1, TimeUnit.SECONDS);
+        }
+
+        return element;
     }
-    
 }
