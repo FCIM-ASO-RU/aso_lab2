@@ -2,19 +2,30 @@ package aso_lab2;
 
 public class Store {
     
-    private static final int capacity = 0; // указываете в соответствии с вариантом
-    private int quantity;
+    private static final int CAPACITY = 3; // указываете в соответствии с вариантом
+    private char number = ' ';
+    private boolean available = false;
     
-    public Store() {
-        quantity = 0;
-    }
-    
-    public synchronized int get() {
-        return 0; // тип данных возвращаемого значения можно изменить
+    public synchronized char get() {
+        while (!available) {
+            try {
+                wait();
+            } catch (InterruptedException e) { }
+        }
+        available = false;
+        notifyAll();
+        return number;
     }
     
     public synchronized void put(char c) {
-        
+        while (available) {
+            try {
+                wait();
+            } catch (InterruptedException e) { }
+        }
+        this.number = c;
+        available = true;
+        notifyAll();
     }
     
 }
