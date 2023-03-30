@@ -4,10 +4,14 @@ class struct{
     public boolean error;
     public String message;
     public boolean stopSignal;
+    public int storeCurrent;
+    public int fromAll;
     public struct(){
         error = false;
         message = "";
         stopSignal = false;
+        storeCurrent = 0;
+        fromAll = 0;
     }
 }
 public class Store { //by Prisacari
@@ -28,20 +32,22 @@ public class Store { //by Prisacari
     
     public synchronized struct get(int perf) {
         struct get_out = new struct();
+
         if( (quantity - perf >= 0) && !stopSignalConsumer) {
             quantity-=perf;
             countRemove += perf;
-            get_out.message += "get from Store, ";
+            get_out.message = "get from store";
         } else {
             get_out.error = true;
-            get_out.message += "store is empty, ";
+            get_out.message = "store is empty";
         }
-        if (countRemove > Z) {
+        if (countRemove >= Z) {
             stopSignalConsumer = true;
         }
+
         get_out.stopSignal = stopSignalConsumer;
-        get_out.message += "store current: " + Integer.toString(quantity) + ", ";
-        get_out.message += "oborot: " + Integer.toString(countRemove) + ".";
+        get_out.storeCurrent = quantity;
+        get_out.fromAll = countRemove;
         return get_out;
     }
     
@@ -50,17 +56,17 @@ public class Store { //by Prisacari
         if( (quantity + perf <= capacity) && !stopSignalProducer ) {
             quantity+=perf;
             countAdd += perf;
-            put_out.message += "put to Store, ";
+            put_out.message = "put to store";
         } else {
             put_out.error = true;
-            put_out.message += "store is overflow, ";
+            put_out.message = "store is overflow";
         }
-        if (countAdd > Z) {
+        if (countAdd >= Z) {
             stopSignalProducer = true;
         }
         put_out.stopSignal = stopSignalProducer;
-        put_out.message += "store current: " + Integer.toString(quantity) + ", ";
-        put_out.message += "oborot: " + Integer.toString(countAdd) + ".";
+        put_out.storeCurrent = quantity;
+        put_out.fromAll = countAdd;
         return put_out;
     }
 
