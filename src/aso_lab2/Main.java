@@ -17,36 +17,36 @@ public class Main {
 
         if (var == 1) {
 
-            producer1.setPerfomance(2);
-            producer2.setPerfomance(2);
-            producer3.setPerfomance(2);
+            producer1.setPerformance(2);
+            producer2.setPerformance(2);
+            producer3.setPerformance(2);
 
-            consumer1.setPerfomance(2);
-            consumer2.setPerfomance(2);
-            consumer3.setPerfomance(2);
-            consumer4.setPerfomance(2);
+            consumer1.setPerformance(2);
+            consumer2.setPerformance(2);
+            consumer3.setPerformance(2);
+            consumer4.setPerformance(2);
 
         } else if (var == 2) {
 
-            producer1.setPerfomance(2);
-            producer2.setPerfomance(2);
-            producer3.setPerfomance(2);
+            producer1.setPerformance(2);
+            producer2.setPerformance(2);
+            producer3.setPerformance(2);
 
-            consumer1.setPerfomance(1);
-            consumer2.setPerfomance(1);
-            consumer3.setPerfomance(1);
-            consumer4.setPerfomance(1);
+            consumer1.setPerformance(1);
+            consumer2.setPerformance(1);
+            consumer3.setPerformance(1);
+            consumer4.setPerformance(1);
 
         } else if (var == 3) {
 
-            producer1.setPerfomance(1);
-            producer2.setPerfomance(1);
-            producer3.setPerfomance(1);
+            producer1.setPerformance(1);
+            producer2.setPerformance(1);
+            producer3.setPerformance(1);
 
-            consumer1.setPerfomance(2);
-            consumer2.setPerfomance(2);
-            consumer3.setPerfomance(2);
-            consumer4.setPerfomance(2);
+            consumer1.setPerformance(2);
+            consumer2.setPerformance(2);
+            consumer3.setPerformance(2);
+            consumer4.setPerformance(2);
         }
 
         producer1.start();
