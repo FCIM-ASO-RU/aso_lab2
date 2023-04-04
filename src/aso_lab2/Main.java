@@ -4,7 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Store store = new Store();
 
-        int var = 1;
+        int perfProducer = 2;
+        int perfConsumer = 2;
 
         Producer producer1 = new Producer(store, "Producer 1");
         Producer producer2 = new Producer(store, "Producer 2");
@@ -15,39 +16,14 @@ public class Main {
         Consumer consumer3 = new Consumer(store, "Consumer 3");
         Consumer consumer4 = new Consumer(store, "Consumer 4");
 
-        if (var == 1) {
+        producer1.setPerformance(perfProducer);
+        producer2.setPerformance(perfProducer);
+        producer3.setPerformance(perfProducer);
 
-            producer1.setPerformance(2);
-            producer2.setPerformance(2);
-            producer3.setPerformance(2);
-
-            consumer1.setPerformance(2);
-            consumer2.setPerformance(2);
-            consumer3.setPerformance(2);
-            consumer4.setPerformance(2);
-
-        } else if (var == 2) {
-
-            producer1.setPerformance(2);
-            producer2.setPerformance(2);
-            producer3.setPerformance(2);
-
-            consumer1.setPerformance(1);
-            consumer2.setPerformance(1);
-            consumer3.setPerformance(1);
-            consumer4.setPerformance(1);
-
-        } else if (var == 3) {
-
-            producer1.setPerformance(1);
-            producer2.setPerformance(1);
-            producer3.setPerformance(1);
-
-            consumer1.setPerformance(2);
-            consumer2.setPerformance(2);
-            consumer3.setPerformance(2);
-            consumer4.setPerformance(2);
-        }
+        consumer1.setPerformance(perfConsumer);
+        consumer2.setPerformance(perfConsumer);
+        consumer3.setPerformance(perfConsumer);
+        consumer4.setPerformance(perfConsumer);
 
         producer1.start();
         producer2.start();
