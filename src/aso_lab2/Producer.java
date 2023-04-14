@@ -1,36 +1,45 @@
 package aso_lab2;
 
 public class Producer extends Thread {
-    
+
     private final Store store;
     private int performance;
-    
+    private int producedByMe;
+
     public Producer(Store _store, String name) {
         store = _store;
         setName(name);
         performance = 1;
+        producedByMe = 0;
     }
-    public void setPerfomance(int perf){
+    public void setPerformance(int perf){
         performance = perf;
     }
-    
+
     @Override
     public void run() {
-        struct info = new struct();
+        struct info;
         while (true) {
-            info = store.put(performance);
-            if (info.error) {
-                try {
-                    System.out.println(getName() + ": " + info.message);
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+            synchronized (this) {
+                info = store.put(performance);
+                if (!info.error) {
+                    producedByMe += performance;
                 }
-            } else System.out.println(getName() + ": " + info.message);
-            if ( info.stopSignal ) {
-                break;
+                System.out.printf("%s: %-18s | Produced by me: %2d | Produced by all: %2d  | Store current: %2d \n", getName() , info.message , producedByMe, info.fromAll, info.storeCurrent);
+
+                if (info.error) {
+                    try {
+                        Thread.sleep(30);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                if ( info.stopSignal ) {
+                    System.out.println(getName() + ": thread stop  | produced by me: " + producedByMe);
+                    break;
+                }
             }
         }
     }
-    
 }
