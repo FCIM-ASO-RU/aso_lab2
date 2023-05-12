@@ -7,22 +7,26 @@ public class Store {
     private boolean available = false;
     
     public synchronized char get() {
+
         while (!available) {
             try {
                 wait();
             } catch (InterruptedException e) { }
         }
+
         available = false;
         notifyAll();
         return number;
     }
     
     public synchronized void put(char c) {
+
         while (available) {
             try {
                 wait();
             } catch (InterruptedException e) { }
         }
+
         this.number = c;
         available = true;
         notifyAll();

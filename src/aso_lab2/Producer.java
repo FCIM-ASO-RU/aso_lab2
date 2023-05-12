@@ -11,11 +11,12 @@ public class Producer extends Thread {
     public Producer(Store _store, String name) {
         store = _store;
         setName(name);
-        array = new char[]{'a','e','i','u','o'};
+        array = new char[]{'a', 'e', 'i', 'u', 'o'};
     }
     
     @Override
     public void run() {
+
         for (int i = 0; i <2; i++) {
             store.put(array[i]);
             System.out.println("Producer #" +
