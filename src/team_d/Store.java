@@ -1,7 +1,7 @@
 package team_d;
 
 public class Store {
-    private char num = ' ';
+    private char num = ' ' ;
     private boolean isworking = false;
 
     public synchronized char get() {

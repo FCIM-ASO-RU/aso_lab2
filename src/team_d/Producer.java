@@ -12,7 +12,7 @@ public class Producer extends Thread {
     public Producer(Store _store, String name) {
         store = _store;
         setName(name);
-        array = new char[]{'b','c','d','f','g'};
+        array = new char[]{'b', 'c','d','f','g'};
     }
 
     @Override

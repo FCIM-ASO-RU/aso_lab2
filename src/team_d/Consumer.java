@@ -19,7 +19,7 @@ public class Consumer extends Thread {
         for (int i = 0; i < 3; i++) {
             value = store.get();
             System.out.println("Consumer #" +
-                    this.number + " got: " + value);
+                    this.number +  " got: " + value);
         }
 
     }
